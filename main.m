@@ -6,6 +6,18 @@
 %% 初始化环境
 clc
 clear
+
+% Resolve paths from this file, so main.m can be run from any MATLAB folder.
+rootDir = fileparts(mfilename('fullpath'));
+addpath(rootDir);
+setup_ovb();
+
+% Check the required optimization toolbox before doing any data processing.
+if exist('sdpvar', 'file') ~= 2 || exist('sdpsettings', 'file') ~= 2
+    error(['未找到 YALMIP。请先将 YALMIP 文件夹加入 MATLAB path，', ...
+        '然后重新运行 main.m。']);
+end
+
 disp('==================== OVB模型测试开始 ====================');
 
 %% 参数设置
@@ -22,7 +34,7 @@ disp(['- 时间周期: ', num2str(T), ' 小时']);
 %% 数据导入
 disp('正在导入数据...');
 % 读取工业用户数据
-filename = '工业用户.xlsx';
+filename = fullfile(rootDir, '工业用户.xlsx');
 sheet_name = ['Sheet', num2str(fac_id)];
 data = readtable(filename, 'Sheet', sheet_name);
 user = table2array(data);
@@ -67,7 +79,5 @@ VB_benders;
 
 %% 结果展示
 disp('==================== 测试完成 ====================');
-
-
 
 

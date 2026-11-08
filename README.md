@@ -76,8 +76,40 @@ s.t. λ ≥ 0, ζ ≥ 0
 
 ## 使用方法
 
-1. 运行 `main.m` 进行模型测试
-2. 可通过修改参数进行不同场景的测试：
+### 最简单的运行方式
+
+不需要进入任何子文件夹。请在 MATLAB 中将本仓库的**根目录**设置为 Current Folder，
+直接运行：
+
+```matlab
+main
+```
+
+`main.m` 会自动识别仓库根目录，因此即使当前 MATLAB 文件夹不是仓库根目录，也可以
+通过脚本的完整路径运行 `main.m`。程序不会修改 MATLAB 的 Current Folder，计算过程中
+生成的 `.mat` 文件会保存回仓库根目录。
+
+如果希望手动配置路径，可以运行：
+
+```matlab
+setup_ovb
+```
+
+该命令只会将仓库根目录加入 MATLAB path，不会进入或修改当前文件夹。
+
+### 依赖
+
+- MATLAB（建议 R2020b 或更高版本）
+- [YALMIP](https://yalmip.github.io/)
+- GUROBI 及其 MATLAB 接口（模型默认使用 `GUROBI` 求解器）
+- Excel 读取支持（较新版本 MATLAB 自带；旧版本可能需要 Excel 兼容组件）
+
+如果 MATLAB 报告找不到 `sdpvar` 或 `sdpsettings`，请先将 YALMIP 加入 MATLAB path。
+如果报告找不到 `GUROBI`，请安装并配置 GUROBI 的 MATLAB 接口。
+
+### 参数修改
+
+运行 `main.m` 进行模型测试。可通过修改参数进行不同场景的测试：
    - 调整时间周期 T
    - 修改电池配置参数 η
    - 更改收敛阈值 ε

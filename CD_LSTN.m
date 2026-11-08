@@ -69,4 +69,4 @@ D = [-A2; A2; -A3 * A2; -eye(K * I * T)];
 d =  [temp1 \ S_0; S_max - temp1 \ S_0; A3 * (temp1 \ S_0) - (S_0_i + S_tar); ...
     zeros(K * I * T, 1)]; 
 
-save("CD_Para.mat","C0","c","C", "D", "d","B1");
+save(fullfile(rootDir, "CD_Para.mat"), "C0", "c", "C", "D", "d", "B1");

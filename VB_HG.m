@@ -24,4 +24,4 @@ H = [H; zeros(2, T)];
 %     G = [G; -1, 0, 1, 0; 0, -1, 0, 1];  
 %     H = [H; zeros(2, T)];
 % end
-save("VB_HG_Para.mat", "H", "G");
+save(fullfile(rootDir, "VB_HG_Para.mat"), "H", "G");

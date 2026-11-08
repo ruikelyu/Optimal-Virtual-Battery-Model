@@ -1,5 +1,5 @@
 %% 计算x0和theta_max
-load("CD_Para.mat");
+load(fullfile(rootDir, "CD_Para.mat"));
 T = size(C0, 2);
 % 机器在各运行状态的运行时间
 y = sdpvar(size(C, 2), 1, 'full');%共T*K*I个变量，前K个，机器1在时段1的三个时间；
@@ -69,5 +69,4 @@ disp([' x0 =   ',num2str(x0')]);
 disp([' theta_max =   ',num2str((theta_max)')]);
 
 % 保存x0和theta_max
-save("x0andtheta_max.mat", "theta_max", "x0");
-
+save(fullfile(rootDir, "x0andtheta_max.mat"), "theta_max", "x0");
